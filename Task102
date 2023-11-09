@@ -1,0 +1,40 @@
+function Moloy = Task_102 ()
+
+  function y=f(x)
+    y=x.^2+5.x-4;
+  end
+  a=0;
+  b=1;
+  e=0.000001;
+  X = [];
+iterations = 0;
+
+while (b - a) / 2 > e
+    c = (a + b) / 2;
+    X = [X; c];
+
+    if f(c) == 0
+        break;
+    elseif f(a) * f(c) < 0
+        b = c;
+    else
+        a = c;
+    end
+
+    iterations = iterations + 1;
+end
+   fprintf('%f\n', X(end));
+
+  x = linspace(1, 4, 100);
+  y = f(x);
+  plot(x, y,'r');
+  grid on;
+  hold on;
+  plot(X, f(X), 'ab');
+  xlabel('Values of x');
+  ylabel('function values');
+  title('Bisection Method');
+  legend('function values ', 'Roots');
+
+
+endfunction
